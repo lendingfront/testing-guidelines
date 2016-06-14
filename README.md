@@ -41,10 +41,17 @@ An example of project structure for test is:
     └── test
         ├── __init__.py         # also make test a package
         └── unit                # unit tests folder
+            └── mocks 
+                └── utils # reflect structure in lendingportal utils folder
+                    └── ls_api
+                        └── business_loan_api.py
+                        └── funding_source_api.py
+                        └── one_time_payment.py
             └── views
                 └── application_test.py
                 └── business_test.py
  ```
+ 
         
 ### Validations
 
@@ -130,6 +137,11 @@ An example of project structure for test is:
     └── test
         ├── __init__.py         # also make test a package
         └── unit                # unit tests folder
+            └── mocks
+                └── utils # reflect structure in lendingportal utils folder
+                    └── ns_api
+                        └── notification_api.py
+                        └── funding_source_api.py
             └── api
                 └── application_test.py
                 └── business_test.py
