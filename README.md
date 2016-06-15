@@ -54,11 +54,10 @@ The mocks will be placed in 'general' repository so they can be shared among oth
     └── test
         └── common
             └── mocks 
-                └── utils 
-                    └── ls_api  # folder for every internal api mock
-                        └── business_loan_api.py
-                        └── funding_source_api.py
-                        └── one_time_payment.py
+                └── ls_api  # folder for every internal api mock
+                    └── business_loan_api.py
+                    └── funding_source_api.py
+                    └── one_time_payment.py
  ```
         
 ### Validations
