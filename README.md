@@ -5,7 +5,7 @@ are focused on two different types or types or repositories: front end and apis.
 The first iteration of testing in LendingFront would consist on creating unit tests to flask endpoints following these
 guidelines:
 
-- Create unit tests ONLY for the entpoints that you just created or you are modifying
+- Create unit tests ONLY for the endpoints that you just created or you are modifying
 - Calls to API's have to be mocked (for examples of mocking take a look to [this](https://github.com/jhonjairoroa87/flask-endpoint-test-mocking/blob/master/test/unit/views_test.py) link)
 - Do not mock interaction with database, make use of database interaction but instead of PostgreSQL use SQLite: 
  (For further detail take a look to [this](https://pythonhosted.org/Flask-Testing/) link )
