@@ -175,6 +175,13 @@ The validations to the api response must include:
      self.assertTrue(False, "the response.dict string cannot be parsed to a json object")
  ```
  
+ - Validate that the response contains the proper json headers
+ ```python
+ # validate response json headers
+ self.assertTrue('application/json' in response.headers['Content-Type'], "the response headers 'Content-Type' "
+                                                                         "should contain application/json")
+ ```
+ 
  - Validate that the converted json contains the expected data depending of the nfo the service is supposed to return
  ```python
  # Validate the response dict contains a 'result' key
