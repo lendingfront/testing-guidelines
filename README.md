@@ -1,5 +1,7 @@
 # Testing Guidelines
 
+This document contains the guidelines when working with tests in LendingFront repositories.
+
 ## Table of Contents
 
 - [Summary](#summary)
@@ -17,15 +19,14 @@
 
 # Summary
 
-This document contains the guidelines when working with tests in LendingFront repositories. The testing guidelines 
-are focused on two different types of repositories: front end and apis.
+The testing guidelines are focused on two different types of repositories: front end and apis.
 
 The first iteration of testing in LendingFront would consist on creating unit tests to flask endpoints following these
 guidelines:
 
 - Create unit tests ONLY for the entpoints that you just created or you are modifying
 - Calls to API's have to be mocked (for examples of mocking take a look to [this](https://github.com/jhonjairoroa87/flask-endpoint-test-mocking/blob/master/test/unit/views_test.py) link)
- 
+
 ## Front end tests
 
 ### Repositories
