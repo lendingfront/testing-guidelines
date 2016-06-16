@@ -13,10 +13,9 @@ This document contains the guidelines when working with tests in LendingFront re
 - [Api tests](#api-tests)
     - [Repositories](#api-repositories)
     - [Project Structure](#api-project-structure)
-    - [Mocks](#api-mocks)
     - [Database](#api-database)
     - [Validations](#api-validations)
-- [Mocks](#mock)
+- [Mocks](#mocks)
     - [Creating a mock](#creating-a-mock)
 - [Data files](#data-files)
     
@@ -222,19 +221,6 @@ The corresponding test file would be business_test.py and should be located in '
  ```
  
  In this first iteration we are going to focus only on the endpoints contained in 'originationservice/app/api' folder.
-
-### API Mocks
-
-The mocks will be placed in 'general' repository so they can be shared among other repository tests
-
-```
-    general
-    └── test
-        └── mock
-            └── ns_api # folder for every internal api mock
-                └── notification_api.py
-                └── funding_source_api.py
-```
 
 ### API Database
 
