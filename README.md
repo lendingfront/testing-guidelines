@@ -345,7 +345,7 @@ An example of data file would be 'application.py' that would be located in 'gene
             └── application.py # contains application endpoint constants 
 ```
 
-An example of constants defined in application.py would be BUSINESS_DATA and OWNERS_DATA :
+An example of constants defined in application.py would be BUSINESS_DATA, OWNERS_DATA and APPLICATION :
 
  ```python
     BUSINESS_DATA = {
