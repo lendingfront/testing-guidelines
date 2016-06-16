@@ -303,14 +303,14 @@ The mocks will be placed in 'general' repository so they can be shared among oth
 To mock the method 'search_application' of the api located in 'general/util/os_api/application_api.py' is necessary to 
 identify the data that is returned from that method which currently is something like this:
 
-    ```
-        {
-            u'total_pages': 1, 
-            u'objects': [...]
-            u'num_results': 2, 
-            u'page': 1
-        }
-    ```
+```
+    {
+        u'total_pages': 1, 
+        u'objects': [...]
+        u'num_results': 2, 
+        u'page': 1
+    }
+```
 
 One example of you can identify the returned data is by simply adding in the method a line that prints it return value.
 
@@ -318,17 +318,17 @@ Once you identify the current data you would create a mock file, in this case 'a
 placed in 'general/mock/os_api/application_api.py'. Its content would be a 'search_application' function that
 returns a static dict:
 
-    ```python
-    
-    def search_application():
+```python
 
-        return {
-            u'total_pages': 1, 
-            u'objects': [...]
-            u'num_results': 2, 
-            u'page': 1
-        }
-    ```
+def search_application():
+
+    return {
+        u'total_pages': 1, 
+        u'objects': [...]
+        u'num_results': 2, 
+        u'page': 1
+    }
+```
 
 As you can see, a mock of a function is simply a function that returns an static value, in this case, a dictionary.
 
@@ -347,44 +347,41 @@ An example of data file would be 'application.py' that would be located in 'gene
 
 An example of constants defined in application.py would be BUSINESS_DATA and OWNERS_DATA :
 
-    ```python
-    
-        BUSINESS_DATA = {
-            "name": "Charlies Vintage Store #2",
-            "tax_id": "100000000",
-            ...,
-            ...
-        }
+ ```python
+    BUSINESS_DATA = {
+        "name": "Charlies Vintage Store #2",
+        "tax_id": "100000000",
+        ...,
+        ...
+    }
 
-        OWNERS_DATA = {
-            'owners-0-title': "Founder",
-            'owners-0-first_name': "Victor",
-            ...,
-            ...
-        }
-        
-        APPLICATION = {
-            'application_number': '918971595362',
-            'frequency_name': '',
-            ...,
-            ...
-        }
-    ```
+    OWNERS_DATA = {
+        'owners-0-title': "Founder",
+        'owners-0-first_name': "Victor",
+        ...,
+        ...
+    }
+    
+    APPLICATION = {
+        'application_number': '918971595362',
+        'frequency_name': '',
+        ...,
+        ...
+    }
+ ```
 
 A use case of data constants in mocks would be when creating the mock of 'create_application' function in the file
 'general.tests.mock.os_api.application_api.py'
 
-
-    ```python
-        def create_application():
-             
-             return {
-                 'status': "OK",
-                 'business': APPLICATION['business_id'],
-                 'application': APPLICATION['id'],
-                 'application_number': APPLICATION['application_number'],
-                 'display_status': APPLICATION['display_status']
-             }
-    ```
+ ```python
+    def create_application():      
+    return {
+        'status': "OK",
+        'business': APPLICATION['business_id'],
+        'application': APPLICATION['id'],
+        'application_number': APPLICATION['application_number'],
+        'display_status': APPLICATION['display_status']
+    }
+ ```
     
 In this case the `APPLICATION` constant help us to ease the creation of create_application response
