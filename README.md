@@ -12,7 +12,8 @@
     - [Repositories](#api-repositories)
     - [Project Structure](#api-project-structure)
     - [Mocks](#api-mocks)
-    - [Validations](#api-validation)
+    - [Database](#api-database)
+    - [Validations](#api-validations)
 
 # Summary
 
