@@ -7,7 +7,7 @@
     - [Repositories](#repositories)
     - [Project Structure](#project-structure)
     - [Mocks](#mock)
-    - [Validations]s(#validations)
+    - [Validations](#validations)
 - [Api tests](#api-tests)
     - [Repositories](#api-repositories)
     - [Project Structure](#api-project-structure)
