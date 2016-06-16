@@ -101,7 +101,7 @@ The corresponding test file would be application_test.py and should be located i
 
 The validations have to be done comparing the elements in the DOM with the elements in memory:
 
-    ```python
+ ```python
     # this is the rendered html
     response_data = """
     <html lang="en">
@@ -145,7 +145,7 @@ The validations have to be done comparing the elements in the DOM with the eleme
         text_div_element = flask_divs[index].text
         name_group_memory = get_all_groups_mock_return[index]['name']
         self.assertEqual(text_div_element, name_group_memory)
-    ```
+ ```
 
 For further reference take a look to the following project : [flask-view-dom-testing](https://github.com/jhonjairoroa87/flask-view-dom-testing/blob/master/test/unit/views_test.py)
  
