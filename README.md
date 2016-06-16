@@ -1,34 +1,32 @@
 # Testing Guidelines
+
+## Table of Contents
+1. [Summary](##summary)
+2. [Front end tests](##front-end-tests)
+3. [Repositories](###repositories)
+4. [Project Structure](###project-structure)
+
+# Summary <a name="summary"></a>
+
 This document contains the guidelines when working with tests in LendingFront repositories. The testing guidelines 
-are focused on two different types or types or repositories: front end and apis.
+are focused on two different types of repositories: front end and apis.
 
 The first iteration of testing in LendingFront would consist on creating unit tests to flask endpoints following these
 guidelines:
 
 - Create unit tests ONLY for the entpoints that you just created or you are modifying
 - Calls to API's have to be mocked (for examples of mocking take a look to [this](https://github.com/jhonjairoroa87/flask-endpoint-test-mocking/blob/master/test/unit/views_test.py) link)
-- Do not mock interaction with database, make use of database interaction but instead of PostgreSQL use SQLite: 
- (For further detail take a look to [this](https://pythonhosted.org/Flask-Testing/) link )
- ```python
- def setUp(self):
-    self.db_uri = 'sqlite:///' + os.path.join(basedir, 'test.db')
-    app.config['TESTING'] = True
-    app.config['WTF_CSRF_ENABLED'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = self.db_uri
-    self.app = app.test_client()
-    db.create_all()
- ```
  
-## DOM tests:
+## Front end tests <a name="front-end-tests"></a>
 
-### Repositories
+### Repositories <a name="repositories"></a>
 
 The repositories where DOM validations have to be implemented are:
 
 - [LendingPortal](https://github.com/dariofvergara/lendingportal)
 - [CustomerPortal](https://github.com/dariofvergara/customerportal)
 
-### Project structure
+### Project structure <a name="project-structure"></a>
 
 An example of project structure for test is:
  ```
@@ -41,9 +39,10 @@ An example of project structure for test is:
     └── test
         ├── __init__.py         # also make test a package
         └── unit                # unit tests folder
-            └── views
-                └── application_test.py
-                └── business_test.py
+            └── app
+                └── views
+                    └── application_test.py
+                    └── business_test.py
  ```
  
 ### Mocks
@@ -52,12 +51,15 @@ The mocks will be placed in 'general' repository so they can be shared among oth
  ```
  general
     └── test
-        └── common
-            └── mocks 
-                └── ls_api  # folder for every internal api mock
-                    └── business_loan_api.py
-                    └── funding_source_api.py
-                    └── one_time_payment.py
+        └── data # TODOe
+            └── application.py # contains constants
+            └── bussines.py
+            └── offer.py
+            mock 
+            └── ls_api  # folder for every internal api mock
+                └── business_loan_api.py
+                └── funding_source_api.py
+                └── one_time_payment_api.py
  ```
         
 ### Validations
@@ -112,6 +114,7 @@ The validations have to be done comparing the elements in the DOM with the eleme
 
 For further reference take a look to the following project : [flask-view-dom-testing](https://github.com/jhonjairoroa87/flask-view-dom-testing/blob/master/test/unit/views_test.py)
  
+ 
 ## API tests:
 
 ### Repositories
@@ -144,11 +147,12 @@ An example of project structure for test is:
     └── test
         ├── __init__.py         # also make test a package
         └── unit                # unit tests folder
-            └── api
-                └── application_test.py
-                └── business_test.py
-                └── owner_test.py
-                └── report_test.py
+            └── app
+                └── api
+                    └── application_test.py
+                    └── business_test.py
+                    └── owner_test.py
+                    └── report_test.py
 ```        
 
 ### Mocks
@@ -158,12 +162,25 @@ The mocks will be placed in 'general' repository so they can be shared among oth
 ```
     general
     └── test
-        └── common
-            └── mocks
-                └── ns_api # folder for every internal api mock
-                    └── notification_api.py
-                    └── funding_source_api.py
+        └── mock
+            └── ns_api # folder for every internal api mock
+                └── notification_api.py
+                └── funding_source_api.py
 ```
+
+### Database
+
+Do not mock interaction with database, make use of database interaction but instead of PostgreSQL use SQLite: 
+ (For further detail take a look to [this](https://pythonhosted.org/Flask-Testing/) link )
+ ```python
+ def setUp(self):
+    self.db_uri = 'sqlite:///' + os.path.join(basedir, 'test.db')
+    app.config['TESTING'] = True
+    app.config['WTF_CSRF_ENABLED'] = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = self.db_uri
+    self.app = app.test_client()
+    db.create_all()
+ ```
 
 ### Validations
  
