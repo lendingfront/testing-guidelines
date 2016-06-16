@@ -1,12 +1,20 @@
 # Testing Guidelines
 
 ## Table of Contents
-1. [Summary](##summary)
-2. [Front end tests](##front-end-tests)
-3. [Repositories](###repositories)
-4. [Project Structure](###project-structure)
 
-# Summary <a name="summary"></a>
+- [Summary](#summary)
+- [Front end tests](#front-end-tests)
+    - [Repositories](#repositories)
+    - [Project Structure](#project-structure)
+    - [Mock](#mock)
+    - [Validation](#validation)
+- [Api tests](#api-tests)
+    - [Repositories](#repositories)
+    - [Project Structure](#project-structure)
+    - [Mock](#mock)
+    - [Validation](#validation)
+
+# Summary
 
 This document contains the guidelines when working with tests in LendingFront repositories. The testing guidelines 
 are focused on two different types of repositories: front end and apis.
@@ -17,16 +25,16 @@ guidelines:
 - Create unit tests ONLY for the entpoints that you just created or you are modifying
 - Calls to API's have to be mocked (for examples of mocking take a look to [this](https://github.com/jhonjairoroa87/flask-endpoint-test-mocking/blob/master/test/unit/views_test.py) link)
  
-## Front end tests <a name="front-end-tests"></a>
+## Front end tests
 
-### Repositories <a name="repositories"></a>
+### Repositories
 
 The repositories where DOM validations have to be implemented are:
 
 - [LendingPortal](https://github.com/dariofvergara/lendingportal)
 - [CustomerPortal](https://github.com/dariofvergara/customerportal)
 
-### Project structure <a name="project-structure"></a>
+### Project structure
 
 An example of project structure for test is:
  ```
@@ -45,7 +53,7 @@ An example of project structure for test is:
                     └── business_test.py
  ```
  
-### Mocks
+### Mock
 
 The mocks will be placed in 'general' repository so they can be shared among other repository tests
  ```
