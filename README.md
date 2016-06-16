@@ -303,12 +303,14 @@ The mocks will be placed in 'general' repository so they can be shared among oth
 To mock the method 'search_application' of the api located in 'general/util/os_api/application_api.py' is necessary to 
 identify the data that is returned from that method which currently is something like this:
 
-{
-    u'total_pages': 1, 
-    u'objects': [...]
-    u'num_results': 2, 
-    u'page': 1
-}
+    ```
+        {
+            u'total_pages': 1, 
+            u'objects': [...]
+            u'num_results': 2, 
+            u'page': 1
+        }
+    ```
 
 One example of you can identify the returned data is by simply adding in the method a line that prints it return value.
 
