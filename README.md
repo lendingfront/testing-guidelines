@@ -6,13 +6,13 @@
 - [Front end tests](#front-end-tests)
     - [Repositories](#repositories)
     - [Project Structure](#project-structure)
-    - [Mock](#mock)
-    - [Validation](#validation)
+    - [Mocks](#mock)
+    - [Validations]s(#validations)
 - [Api tests](#api-tests)
-    - [Repositories](#repositories)
-    - [Project Structure](#project-structure)
-    - [Mock](#mock)
-    - [Validation](#validation)
+    - [Repositories](#api-repositories)
+    - [Project Structure](#api-project-structure)
+    - [Mocks](#api-mocks)
+    - [Validations](#api-validation)
 
 # Summary
 
@@ -53,7 +53,7 @@ An example of project structure for test is:
                     └── business_test.py
  ```
  
-### Mock
+### Mocks
 
 The mocks will be placed in 'general' repository so they can be shared among other repository tests
  ```
@@ -125,7 +125,7 @@ For further reference take a look to the following project : [flask-view-dom-tes
  
 ## API tests:
 
-### Repositories
+### API Repositories
 
 The repositories where API validations have to be implemented are:
 
@@ -139,7 +139,7 @@ The repositories where API validations have to be implemented are:
  - [DesicionService](https://github.com/dariofvergara/decisionservice )
  
 
-### Project structure
+### API Project structure
 
 An example of project structure for test is:
 
@@ -163,7 +163,7 @@ An example of project structure for test is:
                     └── report_test.py
 ```        
 
-### Mocks
+### API Mocks
 
 The mocks will be placed in 'general' repository so they can be shared among other repository tests
 
@@ -176,7 +176,7 @@ The mocks will be placed in 'general' repository so they can be shared among oth
                 └── funding_source_api.py
 ```
 
-### Database
+### API Database
 
 Do not mock interaction with database, make use of database interaction but instead of PostgreSQL use SQLite: 
  (For further detail take a look to [this](https://pythonhosted.org/Flask-Testing/) link )
@@ -190,7 +190,7 @@ Do not mock interaction with database, make use of database interaction but inst
     db.create_all()
  ```
 
-### Validations
+### API Validations
  
 The validations to the api response must include:
 
