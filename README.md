@@ -24,9 +24,10 @@ This document contains the guidelines when working with tests in LendingFront re
 If you are a testing ninja you can avoid this section, otherwise is very important that you read carefully this 
 resources:
 
- - [Functional testing in an environment of Flask micro-services](https://www.theodo.fr/blog/2015/07/functional-testing-in-an-environment-of-flask-micro-services/" target="_blank)
+ - [Functional testing in an environment of Flask micro-services](https://www.theodo.fr/blog/2015/07/functional-testing-in-an-environment-of-flask-micro-services/)
  - [Introduction to mocking](https://www.toptal.com/python/an-introduction-to-mocking-in-python)
  - [Python Mocking 101: Fake It Before You Make It](https://blog.fugue.co/2016-02-11-python-mocking-101.html)
+ - [Getting Started with Python Mock](https://myadventuresincoding.wordpress.com/2011/02/26/python-python-mock-cheat-sheet/)
 
 # Summary
 
