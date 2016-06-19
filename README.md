@@ -28,6 +28,7 @@ resources:
  - [Introduction to mocking](https://www.toptal.com/python/an-introduction-to-mocking-in-python)
  - [Python Mocking 101: Fake It Before You Make It](https://blog.fugue.co/2016-02-11-python-mocking-101.html)
  - [Getting Started with Python Mock](https://myadventuresincoding.wordpress.com/2011/02/26/python-python-mock-cheat-sheet/)
+ - [Python mock by example](http://www.alexandrejoseph.com/blog/2015-08-21-python-mock-example.html)
 
 # Summary
 
@@ -56,97 +57,47 @@ An example of project structure for test is:
     ├── app
     │   ├── __init__.py         # make it a package
     │   └── views
-    │       └── application.py
-    │       └── business.py
+    │       └── business_loan.py
     └── test
         ├── __init__.py         # also make test a package
         └── unit                # unit tests folder
             └── app
                 └── views
-                    └── application_test.py
-                    └── business_test.py
+                    └── business_loan
+                        └── board_loan_test.py # entire class that has all the tests for board_loan endpoint method
+                        └── calculate_loan_test.py # entire class that has all the tests for calculate_loan endpoint method
+                        └── change_payment_frequency_test.py # entire class that has all the tests for change_payment_frequency endpoint method
+                        └── payment_frequency_test.py # entire class that has all the tests for payment_frequency endpoint method
  ```
  
-### Test Naming convention
+### Test file name and folder
 
-### Test file name
+A test file is created per endpoint its name have to contain the word "test" at the end of the name. For example, if 
+you are going to create a test for `business_loan.py:board_loan` method , the corresponding test file would be 
+`board_loan_test.py` and would ve located in `lendingfront.test.unit.app.views.business_loan`
 
-The file that contain the test have to contain the word "test" at the end of the name. For example, if you are going to 
-create a test for application.py, the corresponding test file would be application_test.py
+Note that in the implementation code we are handling a file `business_loan.py` but in the test folder a `business_loan`
+folfer is created and inside is the test of the endpoint, in the case, `board_loan_test.py`
 
-### Test file folder
+The final result in the project structure would be
 
-The folder that contains the test should mirror the project structure inside the test/unit folder. For example, if you 
-are going to create a test for application.py that is located in lendingportal/app/views:
 
  ```
  lendingportal
-    └── app     
-        └── views
-            └── application.py
- ```
- 
-The corresponding test file would be application_test.py and should be located in lendingportal/test/unit/app/views:
-
- ```
- lendingportal
+    ├── app     
+    │   └── views
+    │       └── business_loan.py
     └── test
         └── unit
             └── app      
                 └── views
-                    └── application_test.py
+                    └── business_loan
+                        └── board_loan_test.py
  ```
-  
         
 ### Validations
 
-The validations have to be done comparing the elements in the DOM with the elements in memory:
-
- ```python
-    # this is the rendered html
-    response_data = """
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <title>Hello from Flask</title>
-        </head>
-        <body>
-            <div class="flash">Medellin Python y Django Meetup</div>
-            <div class="flash">PyLadies Medellin </div>
-        </body>
-    </html>
-    """
-    
-    # this is the data in memory
-    get_all_groups_mock_return = [{
-        "city": "Medellin",
-        "country_code": "CO",
-        "country_name": "Colombia",
-        "members": 848,
-        "name": "Medellin Python y Django Meetup"
-    }, {
-        "city": "Medellin",
-        "country_code": "CO",
-        "country_name": "Colombia",
-        "members": 150,
-        "name": "PyLadies Medellin "
-    }]
-    
-    # create soup object with the returned html file
-    soup = BeautifulSoup(response_data, "html.parser")
-    
-    # look for all divs that it's class is 'flash'
-    flask_divs = soup.find_all('div', {'class': "flash"})
-    
-    # verify the rendered divs number is the same number of the groups in memory
-    self.assertEqual(len(flask_divs), len(get_all_groups_mock_return))
-    
-    # verify each div text is exactly the same of the the groups in memory
-    for index, item in enumerate(get_all_groups_mock_return):
-        text_div_element = flask_divs[index].text
-        name_group_memory = get_all_groups_mock_return[index]['name']
-        self.assertEqual(text_div_element, name_group_memory)
- ```
+All front end tests have to call at least the base front end validations located in `general.test.helper.front_end_testing_helper.py`
 
 For further reference take a look to the following project : [flask-view-dom-testing](https://github.com/jhonjairoroa87/flask-view-dom-testing/blob/master/test/unit/views_test.py)
  
@@ -216,7 +167,7 @@ The corresponding test file would be business_test.py and should be located in '
  originationservice
     └── test
         └── unit
-            ├── api      
+            └── api      
                 └── views
                     └── business_test.py
  ```
@@ -238,48 +189,10 @@ Do not mock interaction with database, make use of database interaction but inst
  ```
 
 ### API Validations
- 
-The validations to the api response must include:
 
- - Code status of the response. Ie
+All API tests have to call at least the base API validations located in `general.test.helper.api_testing_helper.py`
  
- ```python 
- # validates the response status code is 200 OK
- self.assertEqual(response.status_code, 200, "the response status code should be 200")
- ```
- 
- - Length of the response.data string should be greater that Cero (for services that return data)
- ```python
- # validates the rerponse data string length is greater that 0
- self.assertTrue(len(response.data) > 0, "the response data string lenght should be  greater than 0")
- ```
- - Validate that the response.data can be converted to a json object
- ```python
- # validate that the response.data string can be converted to json
- response_dict = {}
- try:
-     response_dict = json.loads(response.data)
- except Exception:
-     self.assertTrue(False, "the response.dict string cannot be parsed to a json object")
- ```
- 
- - Validate that the response contains the proper json headers
- ```python
- # validate response json headers
- self.assertTrue('application/json' in response.headers['Content-Type'], "the response headers 'Content-Type' "
-                                                                         "should contain application/json")
- ```
- 
- - Validate that the converted json contains the expected data depending of the nfo the service is supposed to return
- ```python
- # Validate the response dict contains a 'result' key
- self.assertTrue('result' in response_dict, "the response dict should contain a 'result' key ")
- ```
- 
- - The multiple exception cases have to be included in the tests, codes: 500, 401, 403, 404, etc
- 
- 
- For further reference take a look to the following project : [flask-endpoint-test-mocking](https://github.com/jhonjairoroa87/flask-endpoint-test-mocking/blob/master/test/unit/views_test.py)
+For further reference take a look to the following project : [flask-endpoint-test-mocking](https://github.com/jhonjairoroa87/flask-endpoint-test-mocking/blob/master/test/unit/views_test.py)
  
 ### Mocks
 
@@ -288,11 +201,7 @@ The mocks will be placed in 'general' repository so they can be shared among oth
  ```
  general
     └── test
-        └── data 
-            └── application.py # contains application endpoint constants 
-            └── business.py # contains business endpoint constants 
-            └── offer.py 
-            mock 
+        └── mock 
             └── ls_api  # folder for every internal api mock
                 └── business_loan_api.py
                 └── funding_source_api.py
@@ -343,7 +252,9 @@ An example of data file would be 'application.py' that would be located in 'gene
  general
     └── test
         └── data 
-            └── application.py # contains application endpoint constants 
+            └── application.py # contains application constants 
+            └── business.py # contains business constants 
+            └── offer.py # contains offers constants 
 ```
 
 An example of constants defined in application.py would be BUSINESS_DATA, OWNERS_DATA and APPLICATION :
