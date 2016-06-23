@@ -73,11 +73,11 @@ An example of project structure for test is:
 ### Test file name and folder
 
 A test file is created per endpoint its name have to contain the word "test" at the end of the name. For example, if 
-you are going to create a test for `business_loan.py:board_loan` method , the corresponding test file would be 
-`board_loan_test.py` and would ve located in `lendingfront.test.unit.app.views.business_loan`
+you are going to create a test for `business_loan.py:board_loan` method , the corresponding folder and test file would be 
+`board_loan_test.py` and would be located in the folder `lendingfront.test.unit.app.views.business_loan`
 
 Note that in the implementation code we are handling a file `business_loan.py` but in the test folder a `business_loan`
-folfer is created and inside is the test of the endpoint, in the case, `board_loan_test.py`
+folder is created, inside is the test file for the endpoint, in the case, `board_loan_test.py`
 
 The final result in the project structure would be
 
@@ -94,6 +94,17 @@ The final result in the project structure would be
                     └── business_loan
                         └── board_loan_test.py
  ```
+ 
+ Inside `board_loan_test.py` file would be a class with the name of the endpoint `BoardLoanTest` that will containg 
+ method that would be the test cases for the given endpoint. The new test cases will be name concatenating the endpoint 
+ name, endpoint method the test case main feature and "_test". Some examples of test methods would be:
+  - board_loan_get_success_test
+  - board_loan_get_incomplete_params_error_test
+  - board_loan_get_no_params_error_test
+  - board_loan_post_invalid_method_error_test
+  - board_loan_put_invalid_method_error_test
+ 
+#### 
         
 ### Validations
 
@@ -207,6 +218,53 @@ The mocks will be placed in 'general' repository so they can be shared among oth
                 └── funding_source_api.py
                 └── one_time_payment_api.py
  ```
+ 
+#### Mocking classes
+ 
+If you are mocking and entire class, the name of the class and the file name have to contain the word "mock" in the 
+end. For example, if the file is `lending_portal_property_helper_mock.py`, the class would be 
+`LendingPortalPropertyHelperMock`
+
+The recently created mock class should inherit from the class Mock: 
+
+ ```python
+    class LendingPortalPropertyHelperMock(Mock):
+ ```
+
+The content of the mock class would be the exact method names of the original class returning the expected data type:
+
+ ```python
+   class LendingPortalPropertyHelperMock(Mock):
+   
+        def industry_list(self):
+            return []
+        
+        def state_list(self):
+            return []
+        
+        def legal_entity_types(self):
+            return []
+ ```
+ 
+#### Mocking methods
+
+If you are mocking a method, the name of the file where the mock is going to me located should be exactly the same to 
+the name of the folder of the original method. So, if the original file is `general.utils.ls_api.business_loan_api.py`
+the file to be created in the mock folder would be `general.test.mock.ls_api.business_loan_api.py`. The mock methos that is 
+created have to be the same original method name adding '_test' string. For example, if the method to be mocked is
+'get_business_loan' the name of the mock method would be 'get_business_loan_mock'. The final structure would be:
+
+```
+ general
+    ├── utils
+    │   └── ls_api 
+    │       └── business_loan_api.py:get_business_loan
+    └── test
+        └── mock 
+            └── ls_api 
+                └── business_loan_api.py:get_business_loan_mock
+```
+
  
 #### Creating a mock
  
